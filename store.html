@@ -31,7 +31,7 @@
             const definition = definitionInput.value;
 
             try {
-                const response = await fetch('https://comp-4537-lab4-server2.vercel.app/', {
+                const response = await fetch('https://comp-4537-lab4-server2.vercel.app/?=', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@
 
                 if (response.ok) {
                     const data = await response.json();
-                    responseDiv.textContent = `Definition created successfully! Response: ${data.message}`;
+                    responseDiv.textContent = `Response: ${data.message}`;
                 } else {
                     const data = await response.json();
                     responseDiv.textContent = `Error: ${data.message}`;
