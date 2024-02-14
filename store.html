@@ -17,12 +17,15 @@
         <input type="submit" value="Create Definition">
     </form>
 
+    <div id="responseDiv"></div>
+
     <script>
         async function createDefinition(event) {
             event.preventDefault();
 
             const wordInput = document.getElementById("word");
             const definitionInput = document.getElementById("definition");
+            const responseDiv = document.getElementById("responseDiv");
 
             const word = wordInput.value.toLowerCase();
             const definition = definitionInput.value;
@@ -37,13 +40,15 @@
                 });
 
                 if (response.ok) {
-                    alert('Definition created successfully!');
+                    const data = await response.json();
+                    responseDiv.textContent = `Definition created successfully! Response: ${data.message}`;
                 } else {
                     const data = await response.json();
-                    alert(`Error: ${data.message}`);
+                    responseDiv.textContent = `Error: ${data.message}`;
                 }
             } catch (error) {
                 console.error('Error creating definition:', error);
+                responseDiv.textContent = 'An error occurred while creating the definition.';
             }
         }
     </script>
