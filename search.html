@@ -40,6 +40,7 @@
 
                 if (response.ok) {
                     responseArea.innerHTML = `<p>Definition of <span class="response">${searchTerm}</span>: ${data.definition}</p>`;
+                    responseArea.innerHTML = `<p>Total server requests: ${data.requestCount}</p>`;
                 } else {
                     responseArea.innerHTML = `<p>Error: ${data.message}</p>`;
                 }
