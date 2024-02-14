@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dictionary Search</title>
+    <style>
+        .container {
+            margin: 20px;
+        }
+
+        .search-input {
+            margin-bottom: 10px;
+        }
+
+        .response {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Server1: Dictionary Search</h1>
+        <input type="text" id="searchInput" class="search-input" placeholder="Enter a word" pattern=".*\S+.*" required>
+        <button onclick="search()">Search</button>
+        <div id="responseArea"></div>
+    </div>
+
+    <script>
+        function search() {
+            const dictionary = {
+                "apple": "A fruit that grows on trees.",
+                "banana": "A long curved fruit with a yellow skin.",
+                "carrot": "A long, orange vegetable that grows underground.",
+            };
+
+            const searchInput = document.getElementById("searchInput");
+            const responseArea = document.getElementById("responseArea");
+            const searchTerm = searchInput.value.toLowerCase();
+
+            if (dictionary.hasOwnProperty(searchTerm)) {
+                const definition = dictionary[searchTerm];
+                responseArea.innerHTML = `<p>Definition of <span class="response">${searchTerm}</span>: ${definition}</p>`;
+            } else {
+                responseArea.innerHTML = `<p>Word <span class="response">${searchTerm}</span> not found!</p>`;
+            }
+        }
+    </script>
+</body>
+
+</html>
