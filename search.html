@@ -39,9 +39,13 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    responseArea.innerHTML = `
-                    <p>Definition of <span class="response">${searchTerm}</span>: ${data.definition}</p>
-                    <p>Total server requests: ${data.requestCount}</p>`;
+                    if (data.definition) {
+                        responseArea.innerHTML = `
+                        <p>Definition of <span class="response">${searchTerm}</span>: ${data.definition}</p>
+                        <p>Total server requests: ${data.requestCount}</p>`;
+                    } else {
+                        responseArea.innerHTML = `<p>Error: Definition not found for ${searchTerm}</p>`;
+                    }
                 } else {
                     responseArea.innerHTML = `<p>Error: ${data.message}</p>`;
                 }
