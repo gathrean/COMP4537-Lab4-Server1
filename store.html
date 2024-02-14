@@ -7,15 +7,46 @@
 
 <body>
     <h1>Dictionary Input</h1>
-    <form>
+    <form onsubmit="createDefinition(event)">
         <label for="word">Word:</label>
         <input type="text" id="word" name="word" required><br><br>
 
         <label for="definition">Definition:</label>
-        <textarea id="definition" name="definition" rows="4" cols="50"></textarea><br><br>
+        <textarea id="definition" name="definition" rows="4" cols="50" required></textarea><br><br>
 
         <input type="submit" value="Create Definition">
     </form>
+
+    <script>
+        async function createDefinition(event) {
+            event.preventDefault();
+
+            const wordInput = document.getElementById("word");
+            const definitionInput = document.getElementById("definition");
+
+            const word = wordInput.value.toLowerCase();
+            const definition = definitionInput.value;
+
+            try {
+                const response = await fetch('https://comp-4537-lab4-server2.vercel.app/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ word, definition }),
+                });
+
+                if (response.ok) {
+                    alert('Definition created successfully!');
+                } else {
+                    const data = await response.json();
+                    alert(`Error: ${data.message}`);
+                }
+            } catch (error) {
+                console.error('Error creating definition:', error);
+            }
+        }
+    </script>
 </body>
 
 </html>
