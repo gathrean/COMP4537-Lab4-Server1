@@ -27,22 +27,22 @@
     </div>
 
     <script>
-        function search() {
-            const dictionary = {
-                "apple": "A fruit that grows on trees.",
-                "banana": "A long curved fruit with a yellow skin.",
-                "carrot": "A long, orange vegetable that grows underground.",
-            };
-
+        async function search() {
             const searchInput = document.getElementById("searchInput");
             const responseArea = document.getElementById("responseArea");
             const searchTerm = searchInput.value.toLowerCase();
 
-            if (dictionary.hasOwnProperty(searchTerm)) {
-                const definition = dictionary[searchTerm];
-                responseArea.innerHTML = `<p>Definition of <span class="response">${searchTerm}</span>: ${definition}</p>`;
-            } else {
-                responseArea.innerHTML = `<p>Word <span class="response">${searchTerm}</span> not found!</p>`;
+            try {
+                const response = await fetch('https://your-api-endpoint.com/search?word=' + searchTerm);
+                const data = await response.json();
+
+                if (response.ok) {
+                    responseArea.innerHTML = `<p>Definition of <span class="response">${searchTerm}</span>: ${data.definition}</p>`;
+                } else {
+                    responseArea.innerHTML = `<p>Error: ${data.message}</p>`;
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
             }
         }
     </script>
