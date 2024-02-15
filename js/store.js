@@ -19,13 +19,13 @@ async function createDefinition(event) {
 
         if (response.ok) {
             const data = await response.json();
-            responseDiv.textContent = `Response: ${data.message}`;
+            responseDiv.textContent = strings.response.success.replace('{message}', data.message);
         } else {
             const data = await response.json();
-            responseDiv.textContent = `Error: ${data.message}`;
+            responseDiv.textContent = strings.response.error.replace('{message}', data.message);
         }
     } catch (error) {
         console.error('Error creating definition:', error);
-        responseDiv.textContent = 'An error occurred while creating the definition.';
+        responseDiv.textContent = strings.response.genericError;
     }
 }
