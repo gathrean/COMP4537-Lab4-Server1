@@ -19,6 +19,12 @@ class DictionaryDefinition {
         const word = this.wordInput.value.toLowerCase();
         const definition = this.definitionInput.value;
 
+        // Check if the word contains any numbers
+        if (/\d/.test(word)) {
+            this.responseDiv.textContent = strings.response.wordContainsNumbers;
+            return;
+        }
+
         try {
             const response = await fetch('https://comp-4537-lab4-server2.vercel.app/?=', {
                 method: 'POST',
