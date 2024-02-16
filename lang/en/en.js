@@ -1,3 +1,5 @@
+// DISCLOSURE: I've used ChatGPT to code this lab.
+
 const strings = {
     response: {
         success: 'Response: {message}',
