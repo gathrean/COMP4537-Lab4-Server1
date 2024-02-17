@@ -1,7 +1,7 @@
 // DISCLOSURE: I've used ChatGPT to code this lab.
 // I've also tried my best to use OOP.
 
-// HOSTED URL for Server 1: https://comp-4537-lab4-server1.vercel.app/ 
+// HOSTED URL for Server 1: https://comp4537-lab4-server1.netlify.app/ 
 // HOSTED URL for Server 2: https://comp-4537-lab4-server2.vercel.app/ 
 
 // This lab was good practice on working and learning CORS, Fetch API, and OOP in JavaScript.
